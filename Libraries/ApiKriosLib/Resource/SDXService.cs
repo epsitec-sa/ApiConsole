@@ -26,10 +26,9 @@ namespace ApiKriosLib.Resource
 
         }
 
-        public SDXService(SDXSession parentSession, SDXModConfig_Service modConfigService) : base(SDXService_Field.OBJTYPE, "API_SDXService", parentSession.R_IDContract, parentSession.R_IDPool)
+        public SDXService(SDXSession parentSession, SDXModConfig_Service modConfigService) : base(SDXService_Field.OBJTYPE, "API_SDXService", parentSession.R_IDPool)
         {
             R_IDParent = parentSession.R_IDItem;
-            R_IDReference = modConfigService.ReferenceId;
 
             R_Name = modConfigService.Code;
             P_Name = modConfigService.Name;

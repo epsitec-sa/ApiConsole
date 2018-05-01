@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using ODataClientLib;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 
@@ -10,6 +11,11 @@ namespace ApiKriosLib.General
 {
     public class TenantKrios : TenantKriosType
     {
+        public static class AvailableApiAction
+        {
+            public const String SIGN_AGREEMENT = "Act.API_SignAgreement";
+        }
+
         #region Fields
 
         private static String ApiPath = "API_TenantKrios";
@@ -43,6 +49,19 @@ namespace ApiKriosLib.General
         public void Create(API_Proxy_BackendConsole api)
         {
             Id = api.Post<long>(ApiPath, JsonConvert.SerializeObject(this));
+        }
+
+        public void SignAgreement(API_Proxy_BackendConsole api, String agreementName, String version)
+        {
+            if (Id == 0)
+                throw new Exception("You must create the client before signing agreements.");
+
+            NameValueCollection param = new NameValueCollection();
+
+            param.Add("agreementName", agreementName);
+            param.Add("version", version);
+
+            api.Action<string>(ApiPath, AvailableApiAction.SIGN_AGREEMENT, Id, "GET", param);
         }
 
         #endregion

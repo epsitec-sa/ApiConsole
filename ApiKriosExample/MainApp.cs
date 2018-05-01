@@ -12,6 +12,25 @@ namespace ApiKriosExample
 
         #region Callback
 
+        public static void OnUserADKomodoCreated(Scope scope)
+        {
+            API_Proxy_BackendConsole apiKrios = scope.GetApiKrios();
+            UserADKomodo createdUser = scope.GetCreatedResource<UserADKomodo>();
+
+            scope.Add("createdUser", createdUser);
+
+            TenantKrios tenant = scope.Get<TenantKrios>("tenant");
+            Pool p = scope.Get<Pool>("pool");
+
+            //Get production storage type. StorageTypes are templates of Storage.
+            Storage.StorageType storageProdType = Storage.StorageType.Get(apiKrios, Storage.StorageType.ProdType);
+            //Instantiate a storage named "Production" with the template storageProdType.
+            Storage storageProd = new Storage(tenant.Id, p.Id, storageProdType, "Production");
+
+            scope.GetEventChannel().WaitOn(storageProd.Create(apiKrios), scope, OnStorageCreated);
+        }
+
+
         public static void OnStorageCreated(Scope scope)
         {
             API_Proxy_BackendConsole apiKrios = scope.GetApiKrios();
@@ -28,21 +47,28 @@ namespace ApiKriosExample
         public static void OnHeadFolderCreated(Scope scope)
         {
             API_Proxy_BackendConsole apiKrios = scope.GetApiKrios();
-            //Get the instanciated user in the scope
-            UserADKomodo user = scope.Get<UserADKomodo>("user");
 
-            scope.GetEventChannel().WaitOn(user.Create(apiKrios), scope, OnUserADKomodoCreated);
-        }
-
-        public static void OnUserADKomodoCreated(Scope scope)
-        {
-            API_Proxy_BackendConsole apiKrios = scope.GetApiKrios();
-            UserADKomodo createdUser = scope.GetCreatedResource<UserADKomodo>();
-
-            Contract cont = scope.Get<Contract>("contract");
+            TenantKrios tenant = scope.Get<TenantKrios>("tenant");
             Pool p = scope.Get<Pool>("pool");
 
-            SDXProfile sdxProfile = new SDXProfile(cont.IdCustomer, cont.Id, p.Id, createdUser);
+            //Get uem storage type.
+            Storage.StorageType storageProdType = Storage.StorageType.Get(apiKrios, Storage.StorageType.UemType);
+            //Instantiate a storage named "UEM" with the template storageProdType.
+            Storage storageUem = new Storage(tenant.Id, p.Id, storageProdType, "UEM");
+
+            scope.GetEventChannel().WaitOn(storageUem.Create(apiKrios), scope, OnUemStorageCreated);
+        }
+
+        public static void OnUemStorageCreated(Scope scope)
+        {
+            API_Proxy_BackendConsole apiKrios = scope.GetApiKrios();
+
+            TenantKrios tenant = scope.Get<TenantKrios>("tenant");
+            Pool p = scope.Get<Pool>("pool");
+
+            UserADKomodo createdUser = scope.Get<UserADKomodo>("createdUser");
+
+            SDXProfile sdxProfile = new SDXProfile(tenant.Id, p.Id, createdUser);
             scope.GetEventChannel().WaitOn(sdxProfile.Create(apiKrios), scope, OnProfileCreated);
         }
 
@@ -53,7 +79,7 @@ namespace ApiKriosExample
 
             //Get SDXMutCCloud modConfig. ModConfigs are template for SwissDesk Session.
             SDXModConfig modConfig = SDXModConfig.Get(apiKrios, SDXModConfig.SDXMutCCloud);
-            SDXSession sdxSession = new SDXSession(createdProfile, modConfig, SDXSession.SessionState_Production, SDXSession.ConnectionMode_Desktop);
+            SDXSession sdxSession = new SDXSession(createdProfile, modConfig, SDXSession.SessionState_Production, SDXSession.ConnectionMode_Desktop, true, SDXSession.Lang_EN);
 
             scope.GetEventChannel().WaitOn(sdxSession.Create(apiKrios), scope, OnSessionCreated);
         }
@@ -82,38 +108,27 @@ namespace ApiKriosExample
         public static void Main()
         {
             //Create api proxy
-            API_Proxy_BackendConsole apiKrios = new API_Proxy_BackendConsole(API_Proxy_BackendConsole.BaseUrl_SandBox, "YOUR API KEY");
+            API_Proxy_BackendConsole apiKrios = new API_Proxy_BackendConsole(API_Proxy_BackendConsole.BaseUrl_Prod, "f1b0d3d8-3f9a-4ea2-846b-4351355d00b0");
             //Open event channel
-            EventChannel evtChannel = new EventChannel(EventChannel.EventHubUrl_Sandbox);
+            EventChannel evtChannel = new EventChannel(EventChannel.EventHubUrl_Prod);
             //Create a scope used in callback
             Scope evtScope = new Scope(evtChannel, apiKrios);
 
             #region Create Admin stff
-            
-            //Create a TenantKrios for the end user
+
+            //Create a TenantKrios for the end user. You will be the manager of this tenant.
             TenantKrios tenant = new TenantKrios()
             {
-                Company = "FooTest Inc",
-                Firstname = "Foo",
-                Lastname = "Bäär"
+                Company = "SwissDesk X Test 7",
+                Firstname = "Stéphane",
+                Lastname = "Donnet"
             };
 
             tenant.Create(apiKrios);
 
-            //Create a contract for this tenant. Your TenantKrios will be invoiced and setted as reseller. (Your TenantKrios is defined by your api key)
-            Contract cont = new Contract()
-            {
-                IdCustomer = tenant.Id,
-                InvoiceMode = Contract.InvoiceMode_Prepaid,
-                IsCurrentUserInvoiced = true,
-                IsCurrentUserReseller = true,
-                Name = "Crésus Cloud"
-            };
+            //Sign agreement for this customer
+            tenant.SignAgreement(apiKrios, "SwissDesk X", "1.0");
 
-            cont.Create(apiKrios);
-
-            //Sign the agreement named "CCloud" version 1.0.0 on this contract
-            cont.Sign(apiKrios, "CCloud", "1.0.0");
 
             //Create a resource pool
             Pool p = new Pool()
@@ -125,48 +140,42 @@ namespace ApiKriosExample
 
             p.Create(apiKrios);
 
-            //Grant access on this pool for the end user and the reseller. 
+            //Grant access on this pool for the end user and the manager (your own tenant)
             p.GrantAccess(apiKrios, UserADKomodo.OBJTYPE);
-            p.GrantAccessToReseller(apiKrios, UserADKomodo.OBJTYPE);
+            p.GrantAccessToManager(apiKrios, UserADKomodo.OBJTYPE);
 
             p.GrantAccess(apiKrios, Storage.OBJTYPE);
-            p.GrantAccessToReseller(apiKrios, Storage.OBJTYPE);
+            p.GrantAccessToManager(apiKrios, Storage.OBJTYPE);
 
             p.GrantAccess(apiKrios, StorageHeadFolder.OBJTYPE);
-            p.GrantAccessToReseller(apiKrios, StorageHeadFolder.OBJTYPE);
+            p.GrantAccessToManager(apiKrios, StorageHeadFolder.OBJTYPE);
 
             p.GrantAccess(apiKrios, SDXProfile.OBJTYPE);
-            p.GrantAccessToReseller(apiKrios, SDXProfile.OBJTYPE);
+            p.GrantAccessToManager(apiKrios, SDXProfile.OBJTYPE);
 
             p.GrantAccess(apiKrios, SDXSession.OBJTYPE);
-            p.GrantAccessToReseller(apiKrios, SDXSession.OBJTYPE);
+            p.GrantAccessToManager(apiKrios, SDXSession.OBJTYPE);
 
             p.GrantAccess(apiKrios, SDXService.OBJTYPE);
-            p.GrantAccessToReseller(apiKrios, SDXService.OBJTYPE);
+            p.GrantAccessToManager(apiKrios, SDXService.OBJTYPE);
 
             #endregion
 
             //Instantiate a UserADKomodo and put it in scope. This object will be create later.
-            UserADKomodo user = new UserADKomodo(cont.IdCustomer, cont.Id, p.Id, "test")
+            //Pwd policy: 8 chars, at least one special char (non-alphanumeric), a number or a uppercase letter.
+            UserADKomodo user = new UserADKomodo(tenant.Id, p.Id, "apiTest1")
             {
-                P_DisplayName = "User TestApi",
+                P_DisplayName = "User TestApi 1",
                 P_Pwd = "MyStrongPwd2!"
             };
 
             //Add some usefull variable in the scope
             evtScope.Add("user", user);
-            evtScope.Add("contract", cont);
             evtScope.Add("pool", p);
+            evtScope.Add("tenant", tenant);
 
-            //Get production storage type. StorageTypes are templates of Storage.
-            Storage.StorageType storageProdType = Storage.StorageType.Get(apiKrios, Storage.StorageType.ProdType);
-
-            //Instantiate a storage named "Production" with the template storageProdType.
-            Storage storageProd = new Storage(cont.IdCustomer, cont.Id, p.Id, storageProdType, "Production");
-            //Create the storage and wait util the creation is complete.
-            evtChannel.WaitOn(storageProd.Create(apiKrios), evtScope, OnStorageCreated);
-
-
+            //Create the storage and wait util the creation is complete
+            evtChannel.WaitOn(user.Create(apiKrios), evtScope, OnUserADKomodoCreated);
 
             while (working)
             {

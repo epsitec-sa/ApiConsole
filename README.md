@@ -5,9 +5,7 @@ Ce dépôt contient les librairies de cette API ainsi qu'un code d'exemple qui a
 
 # Structure générale
 
-![Structure générale](img/img1.png)
-
-Un **TenantKrios** est une entité globale représentant une personne morale ou phyisque. D'un point de vue administratif, le **TenantKrios** est liée avec Krios (et parfois avec des apporteurs d'affaires ou revendeurs) par un ou plusieurs contrats. Il peut signer un ou plusieur accords (*agreements*) sur un contrat ce qui lui donne la possiblité d'utiliser différentes resources chez Krios.
+Un **TenantKrios** est une entité globale représentant une personne morale ou phyisque. D'un point de vue administratif, il peut signer un ou plusieur accords (*agreements*) ce qui lui donne la possiblité d'utiliser différentes resources chez Krios.
 
 D'un point de vue technique, le **TenantKrios** administre ses différentes resources au travers de **Pool**. Ces dernières sont des conteneurs sur les-quels des droits d'accès peuvent être appliqué. 
 
@@ -29,7 +27,7 @@ L'Ordre de création peut être parallélisé ou modifié suivant les prérequis
 
 ## UserADKomodo
 
-Représente un utilisateur de l'ActiveDirectory Komodo. Les champs obligatoires sont ```P_DisplayName``` et ```P_Pwd```.
+Représente un utilisateur de l'ActiveDirectory Komodo. Les champs obligatoires sont ```R_Name``` (nom d'utilisateur), ```P_DisplayName``` et ```P_Pwd```.
 
 ### Dépendance
 

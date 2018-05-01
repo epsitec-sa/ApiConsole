@@ -30,12 +30,11 @@ namespace ApiKriosLib.Resource
 
         }
 
-        public Storage(long customerId, long contractId, long poolId, StorageType type, String name) : base(Storage_Field.OBJTYPE, "API_Storage", contractId, poolId)
+        public Storage(long customerId, long poolId, StorageType type, String name) : base(Storage_Field.OBJTYPE, "API_Storage", poolId)
         {
             I_CustomerId = String.Format("c{0}", customerId);
             P_Name = name;
             R_Pointer = type.ptrId;
-            R_IDReference = type.refId;
             P_Type = type.type;
         }
 
@@ -47,9 +46,8 @@ namespace ApiKriosLib.Resource
         {
             public static String ProdType = "PROD";
             public static String ArchiveType = "ARCHIVE";
-            public static String UemProfileType = "UEM_PROFILE";
+            public static String UemType = "UEM";
             public static String ColdType = "COLD";
-            public static String UemConfigType = "UEM_CONFIG";
 
             public String type { get; set; }
             public int ptrId { get; set; }

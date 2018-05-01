@@ -18,6 +18,7 @@ namespace ApiKriosLib.Event
         private Dictionary<EventMsg, EventHandler> Handlers { get; set; }
 
         public static String EventHubUrl_Sandbox = @"https://consolesandbox.komodo.ch/krios";
+        public static String EventHubUrl_Prod = @"https://console.komodo.ch/krios";
         public static String EventHubUrl_Dev = @"http://10.0.25.61/BackEnd_Console";
 
         #endregion

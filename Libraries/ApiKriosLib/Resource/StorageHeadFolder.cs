@@ -16,6 +16,7 @@ namespace ApiKriosLib.Resource
 
         public string P_FullPath { get; set; }
         public string P_Name { get; set; }
+        public String I_CustomerId { get; set; }
         #endregion
 
         #region Constructors
@@ -25,12 +26,13 @@ namespace ApiKriosLib.Resource
 
         }
 
-        public StorageHeadFolder(Storage parentStorage, String headFolderName) : base(StorageHeadFolder_Field.OBJTYPE, "API_StorageHeadFolder", parentStorage.R_IDContract, parentStorage.R_IDPool)
+        public StorageHeadFolder(Storage parentStorage, String headFolderName) : base(StorageHeadFolder_Field.OBJTYPE, "API_StorageHeadFolder", parentStorage.R_IDPool)
         {
             R_IDParent = parentStorage.R_IDItem;
 
             R_Name = P_Name = headFolderName;
             R_Pointer = parentStorage.R_Pointer;
+            I_CustomerId = parentStorage.I_CustomerId;
         }
 
         #endregion

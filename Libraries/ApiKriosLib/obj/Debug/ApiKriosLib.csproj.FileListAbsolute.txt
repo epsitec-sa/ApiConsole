@@ -24,7 +24,6 @@ Z:\gitSources\Libraries\ApiKriosLib\ApiKriosLib\obj\Debug\ApiKriosLib.pdb
 Z:\gitSources\Libraries\ApiKriosLib\ApiKriosLib\bin\Debug\ApiKriosLib.dll.config
 Z:\gitSources\Libraries\ApiKriosLib\ApiKriosLib\bin\Debug\Microsoft.AspNet.SignalR.Client.dll
 Z:\gitSources\Libraries\ApiKriosLib\ApiKriosLib\bin\Debug\Microsoft.AspNet.SignalR.Client.xml
-Z:\ApiKrios_PublicGithub\Libraries\ApiKriosLib\bin\Debug\Newtonsoft.Json.xml
 Z:\ApiKrios_PublicGithub\Libraries\ApiKriosLib\bin\Debug\ApiKriosLib.dll.config
 Z:\ApiKrios_PublicGithub\Libraries\ApiKriosLib\bin\Debug\ApiKriosLib.dll
 Z:\ApiKrios_PublicGithub\Libraries\ApiKriosLib\bin\Debug\ApiKriosLib.pdb
@@ -36,6 +35,7 @@ Z:\ApiKrios_PublicGithub\Libraries\ApiKriosLib\bin\Debug\DevExpress.Xpo.v17.1.dl
 Z:\ApiKrios_PublicGithub\Libraries\ApiKriosLib\bin\Debug\DevExpress.Data.v17.1.dll
 Z:\ApiKrios_PublicGithub\Libraries\ApiKriosLib\bin\Debug\ODataClientLib.pdb
 Z:\ApiKrios_PublicGithub\Libraries\ApiKriosLib\bin\Debug\Microsoft.AspNet.SignalR.Client.xml
+Z:\ApiKrios_PublicGithub\Libraries\ApiKriosLib\bin\Debug\Newtonsoft.Json.xml
 Z:\ApiKrios_PublicGithub\Libraries\ApiKriosLib\bin\Debug\DevExpress.Xpo.v17.1.xml
 Z:\ApiKrios_PublicGithub\Libraries\ApiKriosLib\bin\Debug\DevExpress.Data.v17.1.xml
 Z:\ApiKrios_PublicGithub\Libraries\ApiKriosLib\bin\Debug\de\DevExpress.Xpo.v17.1.resources.dll

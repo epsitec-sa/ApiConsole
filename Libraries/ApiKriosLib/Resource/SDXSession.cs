@@ -1,4 +1,5 @@
 ﻿using AdminConsole_Type.Resources.SwissDeskX;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,16 @@ namespace ApiKriosLib.Resource
 {
     public class SDXSession : Resource, SDXSessionType
     {
+
+        #region Inner Classes
+
+        public class SDXSession_JsonConfig
+        {
+            public String lang { get; set; }
+        }
+
+        #endregion
+
         #region Fields
 
         public const String OBJTYPE = SDXSession_Field.OBJTYPE;
@@ -19,6 +30,11 @@ namespace ApiKriosLib.Resource
 
         public static String ConnectionMode_Desktop = "DESKTOP";
         public static String ConnectionMode_RemoteApp = "REMOTE_APP";
+
+        public static String Lang_FR = "FR";
+        public static String Lang_EN = "EN";
+        public static String Lang_DE = "DE";
+        public static String LANG_IT = "IT";
 
         public string P_ModConfig_code { get; set; }
         public string P_ModConfig_customSrv { get; set; }
@@ -39,11 +55,10 @@ namespace ApiKriosLib.Resource
 
         }
 
-        public SDXSession(SDXProfile profile, SDXModConfig modConfig, String sessionState, String connectionMode) : base(SDXSession_Field.OBJTYPE, "API_SDXSession", profile.R_IDContract, profile.R_IDPool)
+        public SDXSession(SDXProfile profile, SDXModConfig modConfig, String sessionState, String connectionMode) : base(SDXSession_Field.OBJTYPE, "API_SDXSession", profile.R_IDPool)
         {
             R_Name = profile.R_Name;
             R_Pointer = modConfig.PointerId;
-            R_IDReference = modConfig.ReferenceId;
 
             P_ModConfig_code = modConfig.Code;
             P_ModConfig_customSrv = modConfig.CustomerSrv;
@@ -70,6 +85,15 @@ namespace ApiKriosLib.Resource
             P_GenericScript = useGenericScript;
         }
 
+        public SDXSession(SDXProfile profile, SDXModConfig modConfig, String sessionState, String connectionMode, bool useGenericScript, String lang) : this(profile, modConfig, sessionState, connectionMode, useGenericScript)
+        {
+            SDXSession_JsonConfig configs = new SDXSession_JsonConfig()
+            {
+                lang = lang
+            };
+
+            P_JsonConfig = JsonConvert.SerializeObject(configs);
+        }
 
         #endregion
     }

@@ -15,7 +15,7 @@ namespace ApiKriosLib.General
         public static class AvailableApiAction
         {
             public const String GRANT_ACCESS = "Act.GrantAccess";
-            public const String GRANT_ACCESS_TO_RESELLER = "Act.GrantAccessToReseller";
+            public const String GRANT_ACCESS_TO_MANAGER = "Act.GrantAccessToManager";
         }
 
         #region Fields
@@ -77,13 +77,13 @@ namespace ApiKriosLib.General
         /// </summary>
         /// <param name="api"></param>
         /// <param name="resourceType"></param>
-        public void GrantAccessToReseller(API_Proxy_BackendConsole api, String resourceType)
+        public void GrantAccessToManager(API_Proxy_BackendConsole api, String resourceType)
         {
             NameValueCollection param = new NameValueCollection();
 
             param.Add("resourceType", resourceType);
 
-            api.Action<string>(ApiPath, AvailableApiAction.GRANT_ACCESS_TO_RESELLER, Id, "GET", param);
+            api.Action<string>(ApiPath, AvailableApiAction.GRANT_ACCESS_TO_MANAGER, Id, "GET", param);
         }
 
         #endregion

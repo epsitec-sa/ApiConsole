@@ -33,6 +33,7 @@ namespace ApiKriosLib.Resource
         public bool P_PwdNeverExpires { get; set; }
         public bool P_UsrCantChangePwd { get; set; }
         public bool P_WebDAVAccess { get; set; }
+        public bool P_UserMustChangePwd { get; set; }
         #endregion
 
         #region Constructors
@@ -42,7 +43,7 @@ namespace ApiKriosLib.Resource
 
         }
 
-        public UserADKomodo(long customerId, long contractId, long poolId, String userName) : base(UserADKomodo_Field.OBJTYPE, "API_UserADKomodo", contractId, poolId)
+        public UserADKomodo(long customerId, long poolId, String userName) : base(UserADKomodo_Field.OBJTYPE, "API_UserADKomodo", poolId)
         {
 
             R_Name = String.Format("c{0}.{1}", customerId, userName);

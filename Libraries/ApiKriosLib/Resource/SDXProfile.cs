@@ -29,13 +29,13 @@ namespace ApiKriosLib.Resource
 
         }
 
-        public SDXProfile(long customerId, long contractId, long poolId, UserADKomodo user) : base(SDXProfile_Field.OBJTYPE, "API_SDXProfile", contractId, poolId)
+        public SDXProfile(long customerId, long poolId, UserADKomodo user) : base(SDXProfile_Field.OBJTYPE, "API_SDXProfile", poolId)
         {
             R_Name = user.R_Name;
             I_CustomerId = String.Format("c{0}", customerId);
         }
 
-        public SDXProfile(long customerId, long contractId, long poolId, UserADKomodo user, String jsonConfig) : this(customerId, contractId, poolId, user)
+        public SDXProfile(long customerId, long poolId, UserADKomodo user, String jsonConfig) : this(customerId, poolId, user)
         {
             P_JsonConfig = jsonConfig;
         }

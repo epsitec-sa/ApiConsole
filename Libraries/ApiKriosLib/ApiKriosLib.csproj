@@ -55,7 +55,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Event\EventHandler.cs" />
-    <Compile Include="General\Contract.cs" />
     <Compile Include="General\Pool.cs" />
     <Compile Include="General\TenantKrios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

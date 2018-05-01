@@ -18,9 +18,8 @@ namespace ApiKriosLib.Resource
             ApiPath = apiPath;
         }
 
-        public Resource(String OBJTYPE, String apiPath, long contractId, long poolId) : this(OBJTYPE, apiPath)
+        public Resource(String OBJTYPE, String apiPath, long poolId) : this(OBJTYPE, apiPath)
         {
-            R_IDContract = contractId;
             R_IDPool = poolId;
         }
 

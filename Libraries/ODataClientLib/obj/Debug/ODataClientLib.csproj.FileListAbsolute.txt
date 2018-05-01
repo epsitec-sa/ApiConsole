@@ -23,5 +23,6 @@ Z:\ApiKrios_PublicGithub\Libraries\ODataClientLib\bin\Debug\ODataClientLib.dll
 Z:\ApiKrios_PublicGithub\Libraries\ODataClientLib\bin\Debug\ODataClientLib.pdb
 Z:\ApiKrios_PublicGithub\Libraries\ODataClientLib\bin\Debug\Newtonsoft.Json.dll
 Z:\ApiKrios_PublicGithub\Libraries\ODataClientLib\bin\Debug\Newtonsoft.Json.xml
+Z:\ApiKrios_PublicGithub\Libraries\ODataClientLib\obj\Debug\ODataClientLib.csprojResolveAssemblyReference.cache
 Z:\ApiKrios_PublicGithub\Libraries\ODataClientLib\obj\Debug\ODataClientLib.dll
 Z:\ApiKrios_PublicGithub\Libraries\ODataClientLib\obj\Debug\ODataClientLib.pdb
