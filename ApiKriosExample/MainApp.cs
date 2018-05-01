@@ -108,9 +108,9 @@ namespace ApiKriosExample
         public static void Main()
         {
             //Create api proxy
-            API_Proxy_BackendConsole apiKrios = new API_Proxy_BackendConsole(API_Proxy_BackendConsole.BaseUrl_Prod, "f1b0d3d8-3f9a-4ea2-846b-4351355d00b0");
+            API_Proxy_BackendConsole apiKrios = new API_Proxy_BackendConsole(API_Proxy_BackendConsole.BaseUrl_SandBox, "YOUR_API_KEY_HERE");
             //Open event channel
-            EventChannel evtChannel = new EventChannel(EventChannel.EventHubUrl_Prod);
+            EventChannel evtChannel = new EventChannel(EventChannel.EventHubUrl_Sandbox);
             //Create a scope used in callback
             Scope evtScope = new Scope(evtChannel, apiKrios);
 
@@ -120,14 +120,14 @@ namespace ApiKriosExample
             TenantKrios tenant = new TenantKrios()
             {
                 Company = "SwissDesk X Test 7",
-                Firstname = "Stéphane",
-                Lastname = "Donnet"
+                Firstname = "",
+                Lastname = ""
             };
 
             tenant.Create(apiKrios);
 
             //Sign agreement for this customer
-            tenant.SignAgreement(apiKrios, "SwissDesk X", "1.0");
+            tenant.SignAgreement(apiKrios, "SwissDesk X", "1.0.0");
 
 
             //Create a resource pool
