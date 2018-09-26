@@ -15,7 +15,7 @@ namespace ApiKriosLib.General
         public static class AvailableApiAction
         {
             public const String GRANT_ACCESS = "Act.GrantAccess";
-            public const String GRANT_ACCESS_TO_MANAGER = "Act.GrantAccessToManager";
+            public const String GRANT_ACCESS_TO_MANAGER = "Act.GrantAccessToReseller"; //GrantAccessToManager
         }
 
         #region Fields
