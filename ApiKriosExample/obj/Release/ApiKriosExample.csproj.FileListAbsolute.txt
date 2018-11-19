@@ -1,0 +1,1 @@
+Z:\ApiConsole\ApiKriosExample\bin\Release\ApiKriosExample.exe.config
