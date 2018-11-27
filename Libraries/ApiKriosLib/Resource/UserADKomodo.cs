@@ -24,7 +24,6 @@ namespace ApiKriosLib.Resource
         [JsonConverter(typeof(StringEnumConverter))]
         public EmployeeType P_EmployeeType { get; set; }
         public string P_Firstname { get; set; }
-        public bool P_FTPAccess { get; set; }
         public string P_Guid { get; set; }
         public string P_Lastname { get; set; }
         public string P_Mobile { get; set; }
@@ -32,7 +31,6 @@ namespace ApiKriosLib.Resource
         public string P_Pwd { get; set; }
         public bool P_PwdNeverExpires { get; set; }
         public bool P_UsrCantChangePwd { get; set; }
-        public bool P_WebDAVAccess { get; set; }
         public bool P_UserMustChangePwd { get; set; }
         #endregion
 

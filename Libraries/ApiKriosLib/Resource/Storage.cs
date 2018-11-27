@@ -15,7 +15,6 @@ namespace ApiKriosLib.Resource
         public const String OBJTYPE = API_Resource.STORAGE;
         public static new int RType_ID = Resource.GetResourceTypeId(OBJTYPE);
 
-        public long P_EffectiveSize { get; set; }
         public string P_Name { get; set; }
         public string P_Path { get; set; }
         public long P_Size { get; set; }
