@@ -1,4 +1,4 @@
-﻿using AdminConsole_Type.Resources.UserADKomodo;
+﻿using ConsoleAdminAPI;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using ODataClientLib;
@@ -9,11 +9,11 @@ using System.Text;
 
 namespace ApiKriosLib.Resource
 {
-    public class UserADKomodo : Resource, UserADKomodoType
+    public class UserADKomodo : Resource, API_UserADKomodo
     {
         #region Fields
 
-        public const String OBJTYPE = UserADKomodo_Field.OBJTYPE;
+        public const String OBJTYPE = API_Resource.USER_AD_KOMODO;
         public static new int RType_ID = Resource.GetResourceTypeId(OBJTYPE);
 
         public string P_ConfirmPwd { get; set; }
@@ -38,12 +38,12 @@ namespace ApiKriosLib.Resource
 
         #region Constructors
 
-        public UserADKomodo() : base(UserADKomodo_Field.OBJTYPE, "API_UserADKomodo")
+        public UserADKomodo() : base(OBJTYPE, "API_UserADKomodo")
         {
 
         }
 
-        public UserADKomodo(long customerId, long poolId, String userName) : base(UserADKomodo_Field.OBJTYPE, "API_UserADKomodo", poolId)
+        public UserADKomodo(long customerId, long poolId, String userName) : base(OBJTYPE, "API_UserADKomodo", poolId)
         {
 
             R_Name = String.Format("c{0}.{1}", customerId, userName);

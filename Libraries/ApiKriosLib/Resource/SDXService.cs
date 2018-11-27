@@ -1,4 +1,4 @@
-﻿using AdminConsole_Type.Resources;
+﻿using ConsoleAdminAPI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace ApiKriosLib.Resource
 {
-    public class SDXService : Resource, SDXServiceType
+    public class SDXService : Resource, API_SDXService
     {
         #region Fields
 
-        public const String OBJTYPE = SDXService_Field.OBJTYPE;
+        public const String OBJTYPE = API_Resource.SDX_SERVICE;
         public static new int RType_ID = Resource.GetResourceTypeId(OBJTYPE);
 
         public string P_JsonData { get; set; }
@@ -21,12 +21,12 @@ namespace ApiKriosLib.Resource
 
         #region Constructors
 
-        public SDXService() : base(SDXService_Field.OBJTYPE, "API_SDXService")
+        public SDXService() : base(OBJTYPE, "API_SDXService")
         {
 
         }
 
-        public SDXService(SDXSession parentSession, SDXModConfig_Service modConfigService) : base(SDXService_Field.OBJTYPE, "API_SDXService", parentSession.R_IDPool)
+        public SDXService(SDXSession parentSession, SDXModConfig_Service modConfigService) : base(OBJTYPE, "API_SDXService", parentSession.R_IDPool)
         {
             R_IDParent = parentSession.R_IDItem;
 

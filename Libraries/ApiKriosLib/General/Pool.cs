@@ -1,4 +1,4 @@
-﻿using AdminConsole_Type.General;
+﻿using ConsoleAdminAPI;
 using Newtonsoft.Json;
 using ODataClientLib;
 using System;
@@ -9,7 +9,7 @@ using System.Text;
 
 namespace ApiKriosLib.General
 {
-    public class Pool : PoolType
+    public class Pool : API_Pool
     {
 
         public static class AvailableApiAction

@@ -1,4 +1,4 @@
-﻿using AdminConsole_Type.General;
+﻿using ConsoleAdminAPI;
 using Newtonsoft.Json;
 using ODataClientLib;
 using System;
@@ -9,7 +9,7 @@ using System.Text;
 
 namespace ApiKriosLib.General
 {
-    public class TenantKrios : TenantKriosType
+    public class TenantKrios : API_TenantKrios
     {
         public static class AvailableApiAction
         {

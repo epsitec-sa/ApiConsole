@@ -1,4 +1,4 @@
-﻿using AdminConsole_Type.Resources;
+﻿using ConsoleAdminAPI;
 using Newtonsoft.Json;
 using ODataClientLib;
 using System;
@@ -8,7 +8,7 @@ using System.Text;
 
 namespace ApiKriosLib.Resource
 {
-    public class Resource : ResourceType
+    public class Resource : API_Resource
     {
         public static int RType_ID { get; set; }
         private String ApiPath { get; set; }

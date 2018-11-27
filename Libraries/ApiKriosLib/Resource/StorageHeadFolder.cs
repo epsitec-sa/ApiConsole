@@ -1,17 +1,17 @@
-﻿using AdminConsole_Type.Resources.Storage;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ConsoleAdminAPI;
 
 namespace ApiKriosLib.Resource
 {
-    public class StorageHeadFolder : Resource, StorageHeadFolderType
+    public class StorageHeadFolder : Resource, API_StorageHeadFolder
     {
         #region Fields
 
-        public const String OBJTYPE = StorageHeadFolder_Field.OBJTYPE;
+        public const String OBJTYPE = API_Resource.STORAGE_HEADFOLDER;
         public static new int RType_ID = Resource.GetResourceTypeId(OBJTYPE);
 
         public string P_FullPath { get; set; }
@@ -21,12 +21,12 @@ namespace ApiKriosLib.Resource
 
         #region Constructors
 
-        public StorageHeadFolder() : base(StorageHeadFolder_Field.OBJTYPE, "API_StorageHeadFolder")
+        public StorageHeadFolder() : base(OBJTYPE, "API_StorageHeadFolder")
         {
 
         }
 
-        public StorageHeadFolder(Storage parentStorage, String headFolderName) : base(StorageHeadFolder_Field.OBJTYPE, "API_StorageHeadFolder", parentStorage.R_IDPool)
+        public StorageHeadFolder(Storage parentStorage, String headFolderName) : base(OBJTYPE, "API_StorageHeadFolder", parentStorage.R_IDPool)
         {
             R_IDParent = parentStorage.R_IDItem;
 

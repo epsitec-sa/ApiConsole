@@ -1,4 +1,4 @@
-﻿using AdminConsole_Type.Resources.SwissDeskX;
+﻿using ConsoleAdminAPI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +10,11 @@ namespace ApiKriosLib.Resource
     /// <summary>
     /// Profile of a remote user.
     /// </summary>
-    public class SDXProfile : Resource, SDXProfileType
+    public class SDXProfile : Resource, API_SDXProfile
     {
         #region Fields
 
-        public const String OBJTYPE = SDXProfile_Field.OBJTYPE;
+        public const String OBJTYPE = API_Resource.SDX_PROFILE;
         public static new int RType_ID = Resource.GetResourceTypeId(OBJTYPE);
 
         public string P_JsonConfig { get; set; }
@@ -24,12 +24,12 @@ namespace ApiKriosLib.Resource
 
         #region Constructors
 
-        public SDXProfile() : base(SDXProfile_Field.OBJTYPE, "API_SDXProfile")
+        public SDXProfile() : base(OBJTYPE, "API_SDXProfile")
         {
 
         }
 
-        public SDXProfile(long customerId, long poolId, UserADKomodo user) : base(SDXProfile_Field.OBJTYPE, "API_SDXProfile", poolId)
+        public SDXProfile(long customerId, long poolId, UserADKomodo user) : base(OBJTYPE, "API_SDXProfile", poolId)
         {
             R_Name = user.R_Name;
             I_CustomerId = String.Format("c{0}", customerId);

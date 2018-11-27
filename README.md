@@ -12,11 +12,6 @@ D'un point de vue technique, le **TenantKrios** administre ses différentes ress
 
 Un **utilisateur API** est simplement un utilisateur d'un **TenantKrios** spécifique. Si ce dernier dispose des droits nécessaires, il peut créer d'autres **TenantKrios**, en être le revendeur, avoir des accès sur ses **Pool** de ressources etc.
 
-# Release note
-
-Actuellement, il n'est pas possible de lister / récupérer des **TenantKrios**. Cette feature est prévue pour la prochaine update.
-La méthode SignAgreement n'est actuellement pas disponible en Sandbox. Cette feature est prévue pour la prochaine update.
-
 # Utilisation
 
 l'API dispose de classes pour gérer la partie administrative dans le namespace ```General``` et du namespace ```Resource``` pour administrer les ressources.

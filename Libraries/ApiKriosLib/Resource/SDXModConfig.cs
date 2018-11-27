@@ -1,4 +1,4 @@
-﻿using AdminConsole_Type.Resources.SwissDeskX;
+﻿using ConsoleAdminAPI;
 using ODataClientLib;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ namespace ApiKriosLib.Resource
     /// <summary>
     /// SDX Session template.
     /// </summary>
-    public class SDXModConfig : SDXModConfigType
+    public class SDXModConfig : API_SDXModConfig
     {
         #region Fields
 
@@ -58,7 +58,7 @@ namespace ApiKriosLib.Resource
     /// <summary>
     /// SDX Service template.
     /// </summary>
-    public class SDXModConfig_Service : SDXModConfig_ServiceType
+    public class SDXModConfig_Service : API_SDXModConfig_Service
     {
         #region Fields
 

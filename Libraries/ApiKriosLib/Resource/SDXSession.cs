@@ -1,4 +1,4 @@
-﻿using AdminConsole_Type.Resources.SwissDeskX;
+﻿using ConsoleAdminAPI;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ApiKriosLib.Resource
 {
-    public class SDXSession : Resource, SDXSessionType
+    public class SDXSession : Resource, API_SDXSession
     {
 
         #region Inner Classes
@@ -22,7 +22,7 @@ namespace ApiKriosLib.Resource
 
         #region Fields
 
-        public const String OBJTYPE = SDXSession_Field.OBJTYPE;
+        public const String OBJTYPE = API_Resource.SDX_SESSION;
         public static new int RType_ID = Resource.GetResourceTypeId(OBJTYPE);
 
         public static String SessionState_Testing = "Test";
@@ -50,12 +50,12 @@ namespace ApiKriosLib.Resource
 
         #region Constructors
 
-        public SDXSession() : base(SDXSession_Field.OBJTYPE, "API_SDXSession")
+        public SDXSession() : base(OBJTYPE, "API_SDXSession")
         {
 
         }
 
-        public SDXSession(SDXProfile profile, SDXModConfig modConfig, String sessionState, String connectionMode) : base(SDXSession_Field.OBJTYPE, "API_SDXSession", profile.R_IDPool)
+        public SDXSession(SDXProfile profile, SDXModConfig modConfig, String sessionState, String connectionMode) : base(OBJTYPE, "API_SDXSession", profile.R_IDPool)
         {
             R_Name = profile.R_Name;
             R_Pointer = modConfig.PointerId;
