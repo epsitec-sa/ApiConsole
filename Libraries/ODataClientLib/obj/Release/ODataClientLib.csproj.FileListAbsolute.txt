@@ -1,7 +1,0 @@
-Z:\ApiConsole\Libraries\ODataClientLib\bin\Release\ODataClientLib.dll
-Z:\ApiConsole\Libraries\ODataClientLib\bin\Release\ODataClientLib.pdb
-Z:\ApiConsole\Libraries\ODataClientLib\bin\Release\Newtonsoft.Json.dll
-Z:\ApiConsole\Libraries\ODataClientLib\bin\Release\Newtonsoft.Json.xml
-Z:\ApiConsole\Libraries\ODataClientLib\obj\Release\ODataClientLib.csprojResolveAssemblyReference.cache
-Z:\ApiConsole\Libraries\ODataClientLib\obj\Release\ODataClientLib.dll
-Z:\ApiConsole\Libraries\ODataClientLib\obj\Release\ODataClientLib.pdb
