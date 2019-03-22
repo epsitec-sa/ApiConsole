@@ -66,6 +66,7 @@ namespace ApiKriosLib.Resource
         public static String SDXMutCCloud_CresusFacturation = "SDXMC_CRESUS_FACT";
         public static String SDXMutCCloud_CresusMch = "SDXMC_CRESUS_MCH";
         public static String SDXMutCCloud_CresusCompta = "SDXMC_CRESUS_COMP";
+        public static String SDXMutCCloud_CresusCloud = "SDXMC_CRESUS_CLOUD";
         public static String SDXMutCCloud_Office365 = "SDX_O365";
 
         public int ID { get; set; }
