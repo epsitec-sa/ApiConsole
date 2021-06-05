@@ -1,0 +1,11 @@
+<Project>
+  <Import Project="Version.props" />
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('$(MSBuildThisFile)', '$(MSBuildThisFileDirectory)../'))" />
+
+  <PropertyGroup>
+    <Company>Krios Suisse SA</Company>
+    <Authors>Stéphane DONNET, Jérémie ARLETTAZ</Authors>
+    <FirstCopyrightYear>2018</FirstCopyrightYear>
+    <PackageProjectUrl>https://github.com/epsitec-sa/ApiConsole</PackageProjectUrl>
+  </PropertyGroup>
+</Project>

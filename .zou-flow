@@ -1,0 +1,3 @@
+[update-version]
+	freezed = true
+	version-props = Version.props
