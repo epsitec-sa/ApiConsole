@@ -354,7 +354,7 @@ namespace ODataClientLib
                 DoHttpRequest("/", "GET");
                 return true;
             }
-            catch (Exception ex)
+            catch
             {
                 return false;
             }
